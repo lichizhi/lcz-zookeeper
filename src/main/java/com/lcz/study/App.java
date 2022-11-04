@@ -21,7 +21,9 @@ public class App
         // watch有两类：
         // 1.new的时候传入的，这个watch它是session级别的，跟path、node没有关系
         // 2.watch的注册只发生在读
-        final ZooKeeper zk = new ZooKeeper("192.168.129.128:2181,192.168.129.129:2181,192.168.129.130:2181,192.168.129.131:2181",
+        // 192.168.129.128:2181,192.168.129.129:2181,192.168.129.130:2181,192.168.129.131:2181
+        // 使用ip连接会很慢，在hosts中添加ip的映射，然后这里用host
+        final ZooKeeper zk = new ZooKeeper("node01:2181,node02:2181,node03:2181,node04:2181",
                 3000, new Watcher() {
             @Override
             public void process(WatchedEvent event) {
