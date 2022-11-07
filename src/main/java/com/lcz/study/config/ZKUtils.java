@@ -6,13 +6,11 @@ import java.util.concurrent.CountDownLatch;
 
 public class ZKUtils {
 
-    private static final String zkHost = "node01:2181,node02:2181,node03:2181,node04:2181/testConf";
-
     private static ZooKeeper zk;
 
     private static final CountDownLatch countDownLatch = new CountDownLatch(1);
 
-    public static ZooKeeper getZk() {
+    public static ZooKeeper getZk(String zkHost) {
         DefaultWatch watch = new DefaultWatch();
         watch.setCountDownLatch(countDownLatch);
         try {

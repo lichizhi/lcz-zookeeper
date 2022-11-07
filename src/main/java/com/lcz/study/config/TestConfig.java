@@ -11,7 +11,7 @@ public class TestConfig {
 
     @Before
     public void con() {
-        zk = ZKUtils.getZk();
+        zk = ZKUtils.getZk("node01:2181,node02:2181,node03:2181,node04:2181/testConf");
     }
 
     @After
@@ -26,7 +26,7 @@ public class TestConfig {
     @Test
     public void getConf() {
 
-        WatchCallback watchCallback = new WatchCallback();
+        WatchCallBack watchCallback = new WatchCallBack();
         watchCallback.setZk(zk);
         ConfData confData = new ConfData();
         watchCallback.setConfData(confData);
