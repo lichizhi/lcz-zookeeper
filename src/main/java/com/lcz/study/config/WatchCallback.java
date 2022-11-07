@@ -12,7 +12,7 @@ public class WatchCallback implements Watcher, AsyncCallback.StatCallback, Async
 
     private ZooKeeper zk;
     private ConfData confData;
-    private final CountDownLatch countDownLatch = new CountDownLatch(1);
+    private CountDownLatch countDownLatch = new CountDownLatch(1);
 
     public void setZk(ZooKeeper zk) {
         this.zk = zk;
@@ -63,6 +63,8 @@ public class WatchCallback implements Watcher, AsyncCallback.StatCallback, Async
                 break;
             case NodeDeleted:
                 // 容忍性
+                countDownLatch = new CountDownLatch(1);
+                confData.setConf(null);
                 break;
             case NodeChildrenChanged:
                 break;

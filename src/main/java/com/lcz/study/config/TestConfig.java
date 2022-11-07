@@ -34,7 +34,12 @@ public class TestConfig {
         watchCallback.aWait();
 
         while (true) {
-            System.out.println(confData.getConf());
+            if (confData.getConf() == null) {
+                System.out.println("miss conf");
+                watchCallback.aWait();
+            } else {
+                System.out.println(confData.getConf());
+            }
 
             try {
                 Thread.sleep(1000);
